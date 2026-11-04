@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RuangTenang - Konsultasi Psikolog Online</title>
+  <meta name="description" content="Konsultasi dengan psikolog berizin lewat video call atau chat. Jadwal fleksibel, data terjaga rahasia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="wrap header-in">
+    <a href="#" class="logo">Ruang<b>Tenang</b></a>
+    <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav class="nav" id="nav">
+      <a href="#layanan">Layanan</a>
+      <a href="#cara">Cara kerja</a>
+      <a href="#psikolog">Psikolog</a>
+      <a href="#harga">Harga</a>
+      <a href="#faq">FAQ</a>
+      <a href="#booking" class="btn btn-sun">Buat janji</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="badge">Psikolog berizin &amp; </p>
+        <h1>Cerita apa pun boleh. Mulai dari satu sesi bersama psikolog.</h1>
+        <p class="lead">Konsultasi lewat video call, telepon, atau chat dari rumah. Pilih jadwal yang cocok, kami cocokkan dengan psikolog sesuai kebutuhanmu.</p>
+        <div class="hero-cta">
+          <a href="#booking" class="btn btn-sun btn-lg">Konsultasi sekarang</a>
+          <a href="#cara" class="btn btn-ghost btn-lg">Lihat cara kerjanya</a>
+        </div>
+        <ul class="hero-points">
+          <li>Respons admin kurang dari 10 menit</li>
+          <li>Data dan cerita terjaga kerahasiaannya</li>
+          <li>Bisa reschedule sampai 3 jam sebelum sesi</li>
+        </ul>
+      </div>
+
+      <form class="booking" id="booking" novalidate aria-labelledby="bookingTitle">
+        <div class="booking-heading">
+          <span class="booking-eyebrow"><span class="status-dot" aria-hidden="true"></span> WAKTU UNTUK DIRIMU</span>
+          <h2 id="bookingTitle">Mulai dari satu sesi.</h2>
+          <p class="booking-intro">Pilih waktu yang nyaman untuk bercerita.</p>
+        </div>
+        <ol class="booking-progress" aria-label="Tahapan booking">
+          <li class="is-active" id="progressSchedule" aria-current="step"><span>1</span> Pilih jadwal</li>
+          <li id="progressDetails"><span>2</span> Data singkat</li>
+        </ol>
+
+        <div id="scheduleStep">
+          <div class="booking-field">
+            <label for="paket">Paket konsultasi</label>
+            <select id="paket" name="paket">
+              <option>Sesi tunggal (60 menit)</option>
+              <option>Paket 4 sesi</option>
+              <option>Konseling pasangan</option>
+            </select>
+            <p class="field-hint" id="packageHint">Durasi sesi 60 menit.</p>
+          </div>
+          <fieldset class="calendar-field">
+            <legend>Pilih tanggal</legend>
+            <div class="calendar-toolbar">
+              <h3 id="calendarMonth" aria-live="polite" aria-atomic="true"></h3>
+              <div class="calendar-navigation">
+                <button type="button" class="calendar-nav" id="prevMonth" aria-label="Bulan sebelumnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 7-5 5 5 5"/></svg></button>
+                <button type="button" class="calendar-nav" id="nextMonth" aria-label="Bulan berikutnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m10 7 5 5-5 5"/></svg></button>
+              </div>
+            </div>
+            <table class="mini-calendar" aria-describedby="calendarHint">
+              <caption class="sr-only">Kalender jadwal konsultasi. Gunakan tombol panah untuk berpindah tanggal.</caption>
+              <thead><tr><th scope="col" abbr="Senin">Sen</th><th scope="col" abbr="Selasa">Sel</th><th scope="col" abbr="Rabu">Rab</th><th scope="col" abbr="Kamis">Kam</th><th scope="col" abbr="Jumat">Jum</th><th scope="col" abbr="Sabtu">Sab</th><th scope="col" abbr="Minggu">Min</th></tr></thead>
+              <tbody id="calendarDays"></tbody>
+            </table>
+            <div class="calendar-legend" aria-hidden="true"><span><i class="legend-available"></i>Bisa dipilih</span><span><i class="legend-selected"></i>Dipilih</span><span><i class="legend-disabled"></i>Tidak tersedia</span></div>
+            <p class="field-hint" id="calendarHint">Tanggal mengikuti jam layanan. Kepastian jadwal dikonfirmasi admin.</p>
+          </fieldset>
+          <fieldset class="time-field" id="timeField">
+            <legend>Pilih jam <span class="timezone">WIB</span></legend>
+            <p class="selected-date" id="selectedDate" aria-live="polite">Pilih tanggal di kalender terlebih dahulu.</p>
+            <div id="timeSlots" class="time-slots" role="group" aria-label="Pilihan jam konsultasi"></div>
+          </fieldset>
+          <input type="hidden" id="tanggal" name="tanggal">
+          <input type="hidden" id="waktu" name="waktu">
+          <button type="button" class="btn btn-booking btn-block" id="continueBooking" disabled>Lanjutkan <span aria-hidden="true">→</span></button>
+          <p class="booking-footnote">Belum ada pembayaran di tahap ini.</p>
+        </div>
+
+        <div id="detailsStep" hidden>
+          <button type="button" class="booking-back" id="backBooking"><span aria-hidden="true">←</span> Ubah jadwal</button>
+          <div class="booking-summary" aria-live="polite">
+            <span class="summary-label">JADWAL PILIHANMU</span>
+            <strong id="summaryDate"></strong>
+            <span id="summaryTime"></span>
+            <span id="summaryPackage"></span>
+          </div>
+          <div class="booking-field">
+            <label for="nama">Nama panggilan</label>
+            <input id="nama" name="nama" type="text" placeholder="Kami boleh memanggilmu siapa?" autocomplete="given-name" maxlength="80" required aria-describedby="error">
+          </div>
+          <div class="booking-field">
+            <label for="topik">Apa yang ingin dibahas?</label>
+            <select id="topik" name="topik">
+              <option>Cemas dan sulit tenang</option>
+              <option>Stres kerja atau kuliah</option>
+              <option>Hubungan dan keluarga</option>
+              <option>Perasaan sedih berkepanjangan</option>
+              <option>Konseling anak dan remaja</option>
+              <option>Belum tahu, ingin ngobrol dulu</option>
+            </select>
+          </div>
+          <p class="error" id="error" role="alert" hidden>Isi nama panggilan dulu ya.</p>
+          <button type="submit" class="btn btn-booking btn-block">Lanjut ke WhatsApp <span aria-hidden="true">↗</span></button>
+          <p class="booking-footnote">Admin akan mengonfirmasi jadwal dan psikologmu.</p>
+        </div>
+        <noscript><p class="error">Aktifkan JavaScript untuk memilih jadwal, atau hubungi WhatsApp yang tercantum di bawah.</p></noscript>
+      </form>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Ringkasan layanan">
+    <div class="wrap stats-in">
+      <div><strong data-count="5000" data-suffix="+">0</strong><span>sesi sudah berjalan</span></div>
+      <div><strong data-count="40" data-suffix="+">0</strong><span>psikolog berizin</span></div>
+      <div><strong data-count="98" data-suffix="%">0</strong><span>klien puas dengan sesinya</span></div>
+      <div><strong data-count="7" data-suffix=" hari">0</strong><span>jadwal tersedia tiap minggu</span></div>
+    </div>
+  </section>
+
+  <section class="sec" id="layanan">
+    <div class="wrap">
+      <h2 class="sec-title">Yang bisa dibantu psikolog kami</h2>
+      <div class="services">
+        <article><h3>Kecemasan dan stres</h3><p>Pikiran berisik, sulit tidur, dada terasa sesak sebelum bekerja atau ujian.</p></article>
+        <article><h3>Suasana hati dan duka</h3><p>Sedih berlarut, kehilangan semangat, atau sedang berduka dan butuh ditemani.</p></article>
+        <article><h3>Hubungan</h3><p>Konflik dengan pasangan, keluarga, atau rekan kerja, termasuk persiapan menikah.</p></article>
+        <article><h3>Anak dan remaja</h3><p>Sulit fokus, emosi meledak, masalah sekolah, atau pergaulan. Orang tua ikut didampingi.</p></article>
+        <article><h3>Karier dan arah hidup</h3><p>Burnout, bingung memilih jalur, atau merasa jalan di tempat.</p></article>
+        <article><h3>Asesmen psikologis</h3><p>Tes minat bakat, kepribadian, dan kebutuhan seleksi, lengkap dengan laporan.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-mist" id="cara">
+    <div class="wrap">
+      <h2 class="sec-title">Mulai konsultasi dalam empat langkah</h2>
+      <ol class="steps">
+        <li><h3>Isi form singkat</h3><p>Ceritakan kebutuhan dan waktu yang kamu mau.</p></li>
+        <li><h3>Dicocokkan dengan psikolog</h3><p>Admin memilih psikolog yang paling sesuai dengan topikmu.</p></li>
+        <li><h3>Bayar dan terima tautan</h3><p>Setelah konfirmasi, tautan video call dikirim lewat WhatsApp.</p></li>
+        <li><h3>Mulai sesi</h3><p>Ngobrol 60 menit di tempat yang nyaman buatmu.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="psikolog">
+    <div class="wrap">
+      <h2 class="sec-title">Kenalan dengan beberapa psikolog kami</h2>
+      <p class="muted center-note">Nama dan profil di bawah adalah contoh. Ganti dengan data psikolog Anda.</p>
+      <div class="team">
+        <article><span class="avatar">AR</span><h3>Anindya R., M.Psi., Psikolog</h3><p class="role">Psikolog Klinis Dewasa</p><p>Kecemasan, trauma, dan regulasi emosi. Pengalaman 8 tahun.</p></article>
+        <article><span class="avatar a2">DP</span><h3>Dimas P., M.Psi., Psikolog</h3><p class="role">Psikolog Klinis Anak dan Remaja</p><p>Tumbuh kembang, masalah perilaku, dan pendampingan orang tua.</p></article>
+        <article><span class="avatar a3">SM</span><h3>Sekar M., M.Psi., Psikolog</h3><p class="role">Psikolog Keluarga dan Pasangan</p><p>Komunikasi, konflik, dan persiapan pernikahan. Pengalaman 6 tahun.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-ink" id="harga">
+    <div class="wrap">
+      <h2 class="sec-title">Biaya jelas di awal</h2>
+      <p class="center-note">Harga contoh, silakan sesuaikan.</p>
+      <div class="plans">
+        <article>
+          <h3>Sesi tunggal</h3>
+          <p class="price">Rp250.000<small>/ 60 menit</small></p>
+          <ul><li>Video call, telepon, atau chat</li><li>Ringkasan sesi</li></ul>
+          <button class="btn btn-sun btn-block" data-paket="Sesi tunggal (60 menit)">Pilih paket ini</button>
+        </article>
+        <article class="featured">
+          <p class="tag">Paling sering dipilih</p>
+          <h3>Paket 4 sesi</h3>
+          <p class="price">Rp850.000<small>/ 4 sesi</small></p>
+          <ul><li>Psikolog yang sama tiap sesi</li><li>Catatan perkembangan</li><li>Hemat Rp150.000</li></ul>
+          <button class="btn btn-sun btn-block" data-paket="Paket 4 sesi">Pilih paket ini</button>
+        </article>
+        <article>
+          <h3>Konseling pasangan</h3>
+          <p class="price">Rp400.000<small>/ 90 menit</small></p>
+          <ul><li>Satu psikolog untuk berdua</li><li>Ruang aman untuk dua pihak</li></ul>
+          <button class="btn btn-sun btn-block" data-paket="Konseling pasangan">Pilih paket ini</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="testimoni">
+    <div class="wrap">
+      <h2 class="sec-title">Kata mereka yang sudah mencoba</h2>
+      <div class="quotes">
+        <blockquote><p>Awalnya ragu, ternyata ngobrol lewat video call terasa lebih santai. Setelah sesi ketiga, tidurku mulai teratur.</p><cite>Rina, 27 tahun, karyawan</cite></blockquote>
+        <blockquote><p>Psikolognya tidak menghakimi. Aku jadi tahu harus mulai dari mana untuk menghadapi stres skripsi.</p><cite>Bagas, 22 tahun, mahasiswa</cite></blockquote>
+        <blockquote><p>Anak kami lebih terbuka setelah beberapa sesi, dan kami diajari cara meresponsnya di rumah.</p><cite>Ibu Lestari, orang tua siswa SD</cite></blockquote>
+      </div>
+      <p class="muted center-note">Testimoni di atas contoh. Ganti dengan testimoni asli dan izin dari klien.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-mist" id="faq">
+    <div class="wrap narrow">
+      <h2 class="sec-title">Pertanyaan yang sering muncul</h2>
+      <div class="faq" id="faqList">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Apakah konsultasi online seefektif bertemu langsung?<i></i></button>
+          <div class="faq-a"><p>Untuk banyak masalah umum seperti cemas, stres, dan hubungan, konseling online terbukti membantu. Untuk kondisi yang membutuhkan penanganan intensif, psikolog akan menyarankan langkah lanjutan.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Apakah ceritaku aman?<i></i></button>
+          <div class="faq-a"><p>Psikolog terikat kode etik untuk menjaga kerahasiaan. Cerita dan data pribadimu tidak dibagikan tanpa persetujuanmu, kecuali ada risiko serius bagi keselamatan.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Bagaimana jika aku tidak cocok dengan psikolognya?<i></i></button>
+          <div class="faq-a"><p>Kamu bisa meminta ganti psikolog di sesi pertama tanpa biaya tambahan.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Apa yang perlu disiapkan sebelum sesi?<i></i></button>
+          <div class="faq-a"><p>Koneksi internet stabil, tempat yang tenang, dan headphone bila ada. Tidak perlu menyiapkan cerita yang rapi, mulai saja dari apa yang terasa paling mengganggu.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Apakah layanan ini untuk kondisi darurat?<i></i></button>
+          <div class="faq-a"><p>Tidak. Jika kamu atau orang di dekatmu berisiko menyakiti diri, segera hubungi layanan gawat darurat setempat atau datang ke IGD terdekat.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Tidak harus menunggu parah untuk bicara dengan psikolog.</h2>
+      <a href="#booking" class="btn btn-sun btn-lg">Buat janji hari ini</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <div><a href="#" class="logo">Ruang<b>Tenang</b></a><p>Layanan konsultasi psikologi online.</p></div>
+    <div><p>WhatsApp: +6282135888462</p><p>Email: 25051214113@mhs.unesa.ac.id</p><p>Senin-Minggu, 08.00-21.00 WIB</p></div>
+    <p class="copy">&copy; <span id="year"></span> RuangTenang. Seluruh hak cipta dilindungi.</p>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Chat WhatsApp">Chat WA</a>
+
+<script src="script.js"></script>
+</body>
+</html>
