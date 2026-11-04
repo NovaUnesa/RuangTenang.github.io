@@ -45,83 +45,35 @@
         </ul>
       </div>
 
-      <form class="booking" id="booking" novalidate aria-labelledby="bookingTitle">
-        <div class="booking-heading">
-          <span class="booking-eyebrow"><span class="status-dot" aria-hidden="true"></span> WAKTU UNTUK DIRIMU</span>
-          <h2 id="bookingTitle">Mulai dari satu sesi.</h2>
-          <p class="booking-intro">Pilih waktu yang nyaman untuk bercerita.</p>
-        </div>
-        <ol class="booking-progress" aria-label="Tahapan booking">
-          <li class="is-active" id="progressSchedule" aria-current="step"><span>1</span> Pilih jadwal</li>
-          <li id="progressDetails"><span>2</span> Data singkat</li>
-        </ol>
-
-        <div id="scheduleStep">
-          <div class="booking-field">
-            <label for="paket">Paket konsultasi</label>
-            <select id="paket" name="paket">
-              <option>Sesi tunggal (60 menit)</option>
-              <option>Paket 4 sesi</option>
-              <option>Konseling pasangan</option>
-            </select>
-            <p class="field-hint" id="packageHint">Durasi sesi 60 menit.</p>
-          </div>
-          <fieldset class="calendar-field">
-            <legend>Pilih tanggal</legend>
-            <div class="calendar-toolbar">
-              <h3 id="calendarMonth" aria-live="polite" aria-atomic="true"></h3>
-              <div class="calendar-navigation">
-                <button type="button" class="calendar-nav" id="prevMonth" aria-label="Bulan sebelumnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 7-5 5 5 5"/></svg></button>
-                <button type="button" class="calendar-nav" id="nextMonth" aria-label="Bulan berikutnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m10 7 5 5-5 5"/></svg></button>
-              </div>
-            </div>
-            <table class="mini-calendar" aria-describedby="calendarHint">
-              <caption class="sr-only">Kalender jadwal konsultasi. Gunakan tombol panah untuk berpindah tanggal.</caption>
-              <thead><tr><th scope="col" abbr="Senin">Sen</th><th scope="col" abbr="Selasa">Sel</th><th scope="col" abbr="Rabu">Rab</th><th scope="col" abbr="Kamis">Kam</th><th scope="col" abbr="Jumat">Jum</th><th scope="col" abbr="Sabtu">Sab</th><th scope="col" abbr="Minggu">Min</th></tr></thead>
-              <tbody id="calendarDays"></tbody>
-            </table>
-            <div class="calendar-legend" aria-hidden="true"><span><i class="legend-available"></i>Bisa dipilih</span><span><i class="legend-selected"></i>Dipilih</span><span><i class="legend-disabled"></i>Tidak tersedia</span></div>
-            <p class="field-hint" id="calendarHint">Tanggal mengikuti jam layanan. Kepastian jadwal dikonfirmasi admin.</p>
-          </fieldset>
-          <fieldset class="time-field" id="timeField">
-            <legend>Pilih jam <span class="timezone">WIB</span></legend>
-            <p class="selected-date" id="selectedDate" aria-live="polite">Pilih tanggal di kalender terlebih dahulu.</p>
-            <div id="timeSlots" class="time-slots" role="group" aria-label="Pilihan jam konsultasi"></div>
-          </fieldset>
-          <input type="hidden" id="tanggal" name="tanggal">
-          <input type="hidden" id="waktu" name="waktu">
-          <button type="button" class="btn btn-booking btn-block" id="continueBooking" disabled>Lanjutkan <span aria-hidden="true">→</span></button>
-          <p class="booking-footnote">Belum ada pembayaran di tahap ini.</p>
-        </div>
-
-        <div id="detailsStep" hidden>
-          <button type="button" class="booking-back" id="backBooking"><span aria-hidden="true">←</span> Ubah jadwal</button>
-          <div class="booking-summary" aria-live="polite">
-            <span class="summary-label">JADWAL PILIHANMU</span>
-            <strong id="summaryDate"></strong>
-            <span id="summaryTime"></span>
-            <span id="summaryPackage"></span>
-          </div>
-          <div class="booking-field">
-            <label for="nama">Nama panggilan</label>
-            <input id="nama" name="nama" type="text" placeholder="Kami boleh memanggilmu siapa?" autocomplete="given-name" maxlength="80" required aria-describedby="error">
-          </div>
-          <div class="booking-field">
-            <label for="topik">Apa yang ingin dibahas?</label>
-            <select id="topik" name="topik">
-              <option>Cemas dan sulit tenang</option>
-              <option>Stres kerja atau kuliah</option>
-              <option>Hubungan dan keluarga</option>
-              <option>Perasaan sedih berkepanjangan</option>
-              <option>Konseling anak dan remaja</option>
-              <option>Belum tahu, ingin ngobrol dulu</option>
-            </select>
-          </div>
-          <p class="error" id="error" role="alert" hidden>Isi nama panggilan dulu ya.</p>
-          <button type="submit" class="btn btn-booking btn-block">Lanjut ke WhatsApp <span aria-hidden="true">↗</span></button>
-          <p class="booking-footnote">Admin akan mengonfirmasi jadwal dan psikologmu.</p>
-        </div>
-        <noscript><p class="error">Aktifkan JavaScript untuk memilih jadwal, atau hubungi WhatsApp yang tercantum di bawah.</p></noscript>
+      <form class="booking" id="booking" novalidate>
+        <h2>Atur sesi pertamamu</h2>
+        <p class="muted">Isi singkat, lalu lanjut ke WhatsApp admin.</p>
+        <label for="nama">Nama panggilan</label>
+        <input id="nama" name="nama" type="text" placeholder="Contoh: Rina" autocomplete="given-name" required>
+        <label for="topik">Apa yang ingin dibahas?</label>
+        <select id="topik" name="topik">
+          <option>Cemas dan sulit tenang</option>
+          <option>Stres kerja atau kuliah</option>
+          <option>Hubungan dan keluarga</option>
+          <option>Perasaan sedih berkepanjangan</option>
+          <option>Konseling anak dan remaja</option>
+          <option>Belum tahu, ingin ngobrol dulu</option>
+        </select>
+        <label for="paket">Paket sesi</label>
+        <select id="paket" name="paket">
+          <option>Sesi tunggal (60 menit)</option>
+          <option>Paket 4 sesi</option>
+          <option>Konseling pasangan</option>
+        </select>
+        <label for="waktu">Waktu yang diinginkan</label>
+        <select id="waktu" name="waktu">
+          <option>Pagi (08.00-11.00)</option>
+          <option>Siang (11.00-15.00)</option>
+          <option>Sore (15.00-18.00)</option>
+          <option>Malam (19.00-21.00)</option>
+        </select>
+        <p class="error" id="error" role="alert" hidden>Isi nama panggilan dulu ya.</p>
+        <button type="submit" class="btn btn-wa btn-block">Lanjut ke WhatsApp</button>
       </form>
     </div>
   </section>
